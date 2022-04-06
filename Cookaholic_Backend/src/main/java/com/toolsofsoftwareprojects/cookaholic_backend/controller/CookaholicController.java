@@ -7,6 +7,7 @@ import com.toolsofsoftwareprojects.cookaholic_backend.service.CookaholicUserServ
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -45,7 +46,8 @@ public class CookaholicController {
         return new ResponseEntity<>(updateCookaholicUser, HttpStatus.OK);
     }
 
-    @PutMapping("/delete/{id}")
+    @Transactional
+    @DeleteMapping("/delete/{id}")
     public ResponseEntity<?> updateCookaholicUser(@PathVariable("id") Long id) {
         cookaholicUserService.deleteCookaholicUser(id);
         return new ResponseEntity<>(HttpStatus.OK);
