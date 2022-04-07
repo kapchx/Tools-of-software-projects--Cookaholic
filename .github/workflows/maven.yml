@@ -25,7 +25,7 @@ jobs:
         distribution: 'temurin'
         cache: maven
     - name: Step-3 Build the project with Maven
-      run: mvn -B package --file pom.xml
+      run: mvn -B package --file Cookaholic_Backend/pom.xml
     - name: Step-4 list current dir
       run: ls -lha
       
