@@ -1,0 +1,35 @@
+# This workflow will build a Java project with Maven, and cache/restore any dependencies to improve the workflow execution time
+# For more information see: https://help.github.com/actions/language-and-framework-guides/building-and-testing-java-with-maven
+
+name: Java CI with Maven
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Step-1 Checkout main bracnh
+      uses: actions/checkout@v3
+      
+    - name: Step-2 Set up JDK 11
+      uses: actions/setup-java@v3
+      with:
+        java-version: '11'
+        distribution: 'temurin'
+        cache: maven
+    - name: Step-3 Build the project with Maven
+      run: mvn -B package --file pom.xml
+    - name: Step-4 list current dir
+      run: ls -lha
+      
+    - name: What is in the target folder?
+      run: |
+        cd target
+        ls -lha
