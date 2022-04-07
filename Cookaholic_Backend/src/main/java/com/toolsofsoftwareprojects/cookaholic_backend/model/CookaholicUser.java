@@ -1,8 +1,11 @@
 package com.toolsofsoftwareprojects.cookaholic_backend.model;
 
+
+import lombok.Builder;
 import javax.persistence.*;
 import java.io.Serializable;
 
+@Builder
 @Entity
 public class CookaholicUser implements Serializable {
 
