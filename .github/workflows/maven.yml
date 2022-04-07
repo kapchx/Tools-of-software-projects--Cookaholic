@@ -28,8 +28,3 @@ jobs:
       run: mvn -B package --file Cookaholic_Backend/pom.xml
     - name: Step-4 list current dir
       run: ls -lha
-      
-    - name: What is in the target folder?
-      run: |
-        cd target
-        ls -lha
