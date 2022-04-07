@@ -52,7 +52,6 @@ public class UserRepoTests {
     @Order(3)
     public void getListOfUsersTest(){
         List<CookaholicUser> cookaholicUsers = cookaholicUserRepo.findAll();
-        System.out.println("AAAAA"+cookaholicUsers.toString());
 
         Assertions.assertThat(cookaholicUsers.size()).isGreaterThan(0);
     }
@@ -66,9 +65,9 @@ public class UserRepoTests {
 
         cookaholicUser.setEmail("testing@gmail.com");
 
-        CookaholicUser employeeUpdated =  cookaholicUserRepo.save(cookaholicUser);
+        CookaholicUser cookaholicUserUpdated =  cookaholicUserRepo.save(cookaholicUser);
 
-        Assertions.assertThat(employeeUpdated.getEmail()).isEqualTo("testing@gmail.com");
+        Assertions.assertThat(cookaholicUserUpdated.getEmail()).isEqualTo("testing@gmail.com");
 
     }
 
