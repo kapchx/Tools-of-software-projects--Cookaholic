@@ -5,9 +5,9 @@ name: Java CI with Maven
 
 on:
   push:
-    branches: [ main ]
+    branches: [ COOK-2-User_repo_tests_implementation ]
   pull_request:
-    branches: [ main ]
+    branches: [ COOK-2-User_repo_tests_implementation ]
 
 jobs:
   build:
