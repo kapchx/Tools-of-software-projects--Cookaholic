@@ -32,4 +32,4 @@ jobs:
       run: ls -lha
       
     - name: Step-5 Test with Maven
-      run: mvn -Dtest=UserRepoTests
+      run: mvn test -Dtest=UserRepoTests
