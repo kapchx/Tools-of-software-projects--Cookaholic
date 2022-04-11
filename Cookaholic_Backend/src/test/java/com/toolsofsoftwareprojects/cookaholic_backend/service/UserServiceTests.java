@@ -18,7 +18,7 @@ import java.util.List;
 import java.util.UUID;
 
 @RunWith( SpringRunner.class )
-@SpringBootTest
+@SpringBootTest(classes = UserServiceTests.class)
 @AutoConfigureMockMvc
 public class UserServiceTests{
 
