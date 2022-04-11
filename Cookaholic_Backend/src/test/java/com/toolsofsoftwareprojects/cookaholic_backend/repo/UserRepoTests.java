@@ -33,9 +33,9 @@ public class UserRepoTests {
                 .name("Daniel Craig")
                 .imageUrl("https://www.clipartmax.com/png/full/132-1327604_avatar-image-manager-color-icon-png.png")
                 .phone("06303456789")
+                .userCode(UUID.randomUUID().toString())
                 .build();
 
-        cookaholicUser.setUserCode(UUID.randomUUID().toString());
         cookaholicUserRepo.save(cookaholicUser);
 
         Assertions.assertThat(cookaholicUser.getId()).isGreaterThan(0);
