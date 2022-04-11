@@ -1,3 +1,5 @@
+package com.toolsofsoftwareprojects.cookaholic_backend.service;
+
 import com.toolsofsoftwareprojects.cookaholic_backend.model.CookaholicUser;
 import com.toolsofsoftwareprojects.cookaholic_backend.repo.CookaholicUserRepo;
 import org.hamcrest.CoreMatchers;
