@@ -25,9 +25,6 @@ jobs:
         distribution: 'temurin'
         cache: maven
 
-    - name: Step-2.5 Build the project with Maven
-      run: mvn clean install
-
     - name: Step-3 Build the project with Maven
       run: mvn -B package --file Cookaholic_Backend/pom.xml
 
@@ -35,4 +32,6 @@ jobs:
       run: ls -lha
       
     - name: Step-5 Test with Maven
-      run: mvn -B "-Dtest=UserServiceTests" test --file Cookaholic_Backend/pom.xml -e
+      run: |
+        mvn clean install
+        mvn -B "-Dtest=UserServiceTests" test --file Cookaholic_Backend/pom.xml -e
