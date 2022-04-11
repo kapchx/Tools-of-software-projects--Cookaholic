@@ -24,10 +24,13 @@ jobs:
         java-version: '11'
         distribution: 'temurin'
         cache: maven
-        
+
+    - name: Step-2.5 Build the project with Maven
+      run: mvn clean install
+
     - name: Step-3 Build the project with Maven
       run: mvn -B package --file Cookaholic_Backend/pom.xml
-      
+
     - name: Step-4 list current dir
       run: ls -lha
       
