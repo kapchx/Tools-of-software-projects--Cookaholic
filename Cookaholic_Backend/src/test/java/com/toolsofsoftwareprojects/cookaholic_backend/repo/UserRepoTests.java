@@ -1,5 +1,6 @@
+package com.toolsofsoftwareprojects.cookaholic_backend.repo;
+
 import com.toolsofsoftwareprojects.cookaholic_backend.model.CookaholicUser;
-import com.toolsofsoftwareprojects.cookaholic_backend.repo.CookaholicUserRepo;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
