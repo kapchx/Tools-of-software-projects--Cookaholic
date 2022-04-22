@@ -15,3 +15,15 @@
 	valamint chat funkció is, a későbbi kiszállítással, és ügyfélszolgálattal kapcsolatos egyeztetés céljából.
 	A java programozási nyelvet és a Springboot keretrendszert fogjuk használni a webalkalmazásunk és
 	a Typescript háttéroldalának elkészítéséhez,CSS és HTML Angular keretrendszerrel az előtérhez.
+	
+## Extra tools:
+
+Postman:
+username: guescookaholik
+email: absolum@yahoo.com
+password: guestguest
+
+Jira:
+username: Guest
+email: absolum@yahoo.com
+password: guestguest
