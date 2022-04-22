@@ -32,4 +32,4 @@ jobs:
       run: ls -lha
       
     - name: Step-5 Test with Maven
-      run: mvn -B "-Dtest=UserRepoTests" test --file Cookaholic_Backend/pom.xml
+      run: mvn -B test --file Cookaholic_Backend/pom.xml
