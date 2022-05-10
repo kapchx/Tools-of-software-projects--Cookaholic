@@ -35,7 +35,7 @@ public class UserServiceTests{
         List<CookaholicUser> users =
                 List.of(CookaholicUser.builder()
                             .email("daniel@a.com")
-                            .userTitle("JavaScript")
+                            .userTitle(CookaholicUser.UserTitle.ROLE_ADMIN)
                             .name("Daniel Craig")
                             .imageUrl("https://www.clipartmax.com/png/full/132-1327604_avatar-image-manager-color-icon-png.png")
                             .phone("06303456789")
@@ -43,7 +43,7 @@ public class UserServiceTests{
                             .build(),
                         CookaholicUser.builder()
                             .email("thomas@a.com")
-                            .userTitle("BackEnd")
+                            .userTitle(CookaholicUser.UserTitle.ROLE_USER)
                             .name("Thomas Craig")
                             .imageUrl("https://www.clipartmax.com/png/full/132-1327604_avatar-image-manager-color-icon-png.png")
                             .phone("06303456789")
