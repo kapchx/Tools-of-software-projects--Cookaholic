@@ -5,9 +5,9 @@ name: Java CI with Maven
 
 on:
   push:
-    branches: [ main ]
+    branches: [ COOK-2-User_repo_tests_implementation ]
   pull_request:
-    branches: [ main ]
+    branches: [ COOK-2-User_repo_tests_implementation ]
 
 jobs:
   build:
@@ -24,10 +24,10 @@ jobs:
         java-version: '11'
         distribution: 'temurin'
         cache: maven
-        
+
     - name: Step-3 Build the project with Maven
       run: mvn -B package --file Cookaholic_Backend/pom.xml
-      
+
     - name: Step-4 list current dir
       run: ls -lha
       
