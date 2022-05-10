@@ -29,7 +29,7 @@ public class UserRepoTests {
     public void saveUser(){
         CookaholicUser cookaholicUser = CookaholicUser.builder()
                 .email("daniel@a.com")
-                .userTitle("JavaScript")
+                .userTitle(CookaholicUser.UserTitle.ROLE_ADMIN)
                 .name("Daniel Craig")
                 .imageUrl("https://www.clipartmax.com/png/full/132-1327604_avatar-image-manager-color-icon-png.png")
                 .phone("06303456789")
