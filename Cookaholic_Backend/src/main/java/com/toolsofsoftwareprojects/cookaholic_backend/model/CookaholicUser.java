@@ -1,12 +1,21 @@
 package com.toolsofsoftwareprojects.cookaholic_backend.model;
 
 
-import lombok.Builder;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.sun.istack.NotNull;
+import lombok.*;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
 @Builder
 @Entity
+@Data
+@EqualsAndHashCode
+@AllArgsConstructor
+@NoArgsConstructor
+@Setter
+@Getter
 public class CookaholicUser implements Serializable {
 
     @Id
@@ -18,10 +27,19 @@ public class CookaholicUser implements Serializable {
     private String name;
 
     @Column
+    @NotNull
+    private String username;
+
+    @Column
+    @NotNull
+    @JsonProperty(access = JsonProperty.Access.READ_WRITE)
+    private String password;
+
+    @Column
     private String email;
 
     @Column
-    private String userTitle;
+    private UserTitle userTitle;
 
     @Column
     private String phone;
@@ -32,73 +50,8 @@ public class CookaholicUser implements Serializable {
     @Column(nullable = false, updatable = false)
     private String userCode;
 
-    public CookaholicUser() {
-    }
-
-    public CookaholicUser(Long id, String name, String email, String userTitle, String phone, String imageUrl, String userCode) {
-        this.id = id;
-        this.name = name;
-        this.email = email;
-        this.userTitle = userTitle;
-        this.phone = phone;
-        this.imageUrl = imageUrl;
-        this.userCode = userCode;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public String getUserTitle() {
-        return userTitle;
-    }
-
-    public String getPhone() {
-        return phone;
-    }
-
-    public String getImageUrl() {
-        return imageUrl;
-    }
-
-    public String getUserCode() {
-        return userCode;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public void setUserTitle(String userTitle) {
-        this.userTitle = userTitle;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
-
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
-    }
-
-    public void setUserCode(String userCode) {
-        this.userCode = userCode;
+    public enum UserTitle {
+        ROLE_GUEST, ROLE_USER, ROLE_ADMIN
     }
 
     @Override

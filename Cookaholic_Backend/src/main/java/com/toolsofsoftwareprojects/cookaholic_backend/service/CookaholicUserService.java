@@ -36,6 +36,11 @@ public class CookaholicUserService {
                 .orElseThrow(() -> new CookaholicUserNotFoundException("User by id " + id + " was not found"));
     }
 
+    public CookaholicUser findCookaholicUserByName(String name) {
+        return cookaholicUserRepo.findByUsername(name)
+                .orElseThrow(() -> new CookaholicUserNotFoundException("User by name " + name + " was not found"));
+    }
+
     public void deleteCookaholicUser(Long id) {
         cookaholicUserRepo.deleteCookaholicUserById(id);
     }

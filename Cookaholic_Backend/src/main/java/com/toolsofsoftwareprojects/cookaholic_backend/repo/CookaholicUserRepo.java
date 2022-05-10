@@ -9,4 +9,5 @@ public interface CookaholicUserRepo extends JpaRepository<CookaholicUser, Long> 
     void deleteCookaholicUserById(Long id);
 
     Optional<CookaholicUser> findCookaholicUserById(Long id);
+    Optional<CookaholicUser> findByUsername(String name);
 }
