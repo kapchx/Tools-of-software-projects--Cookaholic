@@ -13,7 +13,7 @@ pipeline {
 
         stage('Build'){
             steps{
-                sh 'git checkout -f 32b76401ebc52bfe4d2e72eb38516e6be32c72ad'
+                checkout scm
                 sh 'ls -lha'
             }
         }
