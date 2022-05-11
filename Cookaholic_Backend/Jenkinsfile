@@ -6,8 +6,7 @@ pipeline {
         stage('Checkout Codebase'){
             steps{
                 cleanWs()
-                checkout scm: [$class: 'GitSCM', branches: [[name: '*/mark-test']],userRemoteConfigs:
-                [[credentialsId: 'Tools-of-software-projects--Cookaholic', url: 'https://github.com/kapchx/Tools-of-software-projects--Cookaholic']]]
+                
             }
         }
 
