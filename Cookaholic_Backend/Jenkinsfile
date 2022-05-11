@@ -5,6 +5,7 @@ pipeline {
 
         stage('Checkout Codebase'){
             steps{
+                sh 'ls -lha'
                 cleanWs()
                 
             }
