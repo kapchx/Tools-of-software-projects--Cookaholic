@@ -1,30 +1,33 @@
 pipeline {
 
-  agent any
-  
-  stages {
-  
-    stage("build") {
-    
-      steps {
-        echo 'builing app'
-        sh "ls -lha"
-        withMaven(maven : 'maven_3_5_0') {
-          sh "mvn -f Cookaholic_Backend/pom.xml clean compile"
+    agent any
+    stages {
+
+        stage('Checkout Codebase'){
+            steps{
+                cleanWs()
+                checkout scm: [$class: 'GitSCM', branches: [[name: '*/mark-test']],userRemoteConfigs:
+                [[credentialsId: 'Tools-of-software-projects--Cookaholic', url: 'git@github.com:kapchx/Tools-of-software-projects--Cookaholic']]]
+            }
         }
-      }    
+
+        stage('Build'){
+            steps{
+                sh 'ls -lha'
+            }
+        }
+
+        stage('Test'){
+            steps{
+                sh 'echo testing'
+            }
+        }
+
+        stage('Deploy'){
+            steps{
+                sh 'echo testing' 
+            }
+        }
     }
-    stage("test") {
-    
-      steps {
-        echo 'testing app'
-      }
-    }
-    stage("deploy") {
-    
-      steps {
-        echo 'deploying app'
-      }
-    }
-  }
+
 }
