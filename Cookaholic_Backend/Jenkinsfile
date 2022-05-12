@@ -12,7 +12,7 @@ pipeline {
 
         stage('Build'){
             steps{
-                sh 'cd ./Cookaholic_Backend'
+                sh 'cd Cookaholic_Backend'
                 sh 'ls -lha'
                 sh 'cd ./Cookaholic_Backend'
                 sh 'ls -lha'
