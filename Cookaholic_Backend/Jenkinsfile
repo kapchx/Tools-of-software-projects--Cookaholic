@@ -14,6 +14,8 @@ pipeline {
             steps{
                 sh 'cd ./Cookaholic_Backend'
                 sh 'ls -lha'
+                sh 'cd ./Cookaholic_Backend'
+                sh 'ls -lha'
                 sh '/usr/local/bin/mvn clean install'
             
             }
