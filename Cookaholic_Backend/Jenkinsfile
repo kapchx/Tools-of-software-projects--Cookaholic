@@ -15,8 +15,8 @@ pipeline {
                 dir('Cookaholic_Backend') {
                     sh "pwd"
                     sh "ls -lha"
+                    sh '/usr/local/bin/mvn clean install'
                 }
-                sh '/usr/local/bin/mvn clean install'
             
             }
         }
