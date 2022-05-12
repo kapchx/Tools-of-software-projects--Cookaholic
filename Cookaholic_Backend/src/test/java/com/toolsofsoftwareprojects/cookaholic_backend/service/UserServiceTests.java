@@ -143,9 +143,9 @@ public class UserServiceTests{
     @Test
     @Order(2)
     @Rollback(value = false)
-    public void deleteCheck() throws Exception {
+    public void deleteAllUserCheck() throws Exception {
 
-        String stringJson2=("{\n" +
+        String stringAdmin=("{\n" +
                 "    \"username\" : \"admin\",\n" +
                 "    \"password\" : \"admin\"\n" +
                 "}");
@@ -153,17 +153,16 @@ public class UserServiceTests{
         MvcResult result = this.mockMvc.perform(
                 post("http://localhost:8080/api/auth")
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content(stringJson2)).andDo(print()).andExpect(status().isOk())
+                        .content(stringAdmin)).andDo(print()).andExpect(status().isOk())
                 .andReturn();
 
         String token = result.getResponse().getContentAsString().substring(10,(result.getResponse().getContentAsString().length()-2));
-
-        MvcResult result1 = mockMvc.perform(delete("/CookaholicUser/delete")
+        mockMvc.perform(delete("/CookaholicUser/delete")
                 .header(HttpHeaders.AUTHORIZATION, "Bearer " + token))
                 .andDo(print())
                 .andExpect(status().isOk())
-                .andExpect(MockMvcResultMatchers.jsonPath("$.size()", CoreMatchers.is(cookaholicUserRepo.findAll().size())))
                 .andReturn();
+
     }
 
 
