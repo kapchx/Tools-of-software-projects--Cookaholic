@@ -223,7 +223,6 @@ public class IntegrationTestsForRestApiCalls {
                 .andExpect(status().isOk())
                 .andReturn();
 
-        String token2 = result.getResponse().getContentAsString().substring(10,(result.getResponse().getContentAsString().length()-2));
         mockMvc.perform(delete("/CookaholicUser/delete/{id}",3L)
                 .header(HttpHeaders.AUTHORIZATION, "Bearer " + token))
                 .andDo(print())
