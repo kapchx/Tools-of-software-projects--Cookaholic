@@ -14,8 +14,10 @@ pipeline {
             steps{
                 sh 'cd Cookaholic_Backend'
                 sh 'ls -lha Cookaholic_Backend/'
-                sh 'cd ./Cookaholic_Backend'
-                sh 'ls -lha'
+                dir('your-sub-directory') {
+                    sh "pwd"
+                    sh "ls -lha"
+                }
                 sh '/usr/local/bin/mvn clean install'
             
             }
