@@ -13,7 +13,7 @@ pipeline {
         stage('Build'){
             steps{
                 sh 'cd ./Cookaholic_Backend'
-                sh 'mvn clean install'
+                sh '/usr/local/bin/mvn clean install'
             
             }
         }
