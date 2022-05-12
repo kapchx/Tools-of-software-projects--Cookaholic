@@ -35,7 +35,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest
 @AutoConfigureMockMvc
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
-public class UserServiceTests{
+public class IntegrationTestsForRestApiCalls {
 
     @Autowired
     private CookaholicUserRepo cookaholicUserRepo;
@@ -56,7 +56,7 @@ public class UserServiceTests{
      * @throws Exception
      */
     @Test
-    @Order(0)
+    @Order(1)
     @Rollback(value = false)
     public void testThePasswordEncoding_TheAdminRegistration_AndWithAuthenticationFindAllUserInRepo() throws Exception {
         // given - setup or precondition
@@ -134,14 +134,49 @@ public class UserServiceTests{
     }
 
     @Test
-    @Order(1)
+    @Order(2)
     public void givenNoToken_whenGetSecureRequest_thenIsForbidden() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.get("/CookaholicUser/find/all"))
                 .andExpect(status().isForbidden());
     }
 
     @Test
-    @Order(2)
+    @Order(3)
+    public void registerGuest() throws Exception {
+        String stringAdmin=("{\n" +
+                "    \"username\" : \"admin\",\n" +
+                "    \"password\" : \"admin\"\n" +
+                "}");
+
+        MvcResult result = this.mockMvc.perform(
+                post("http://localhost:8080/api/auth")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(stringAdmin)).andDo(print()).andExpect(status().isOk())
+                .andReturn();
+
+        String token = result.getResponse().getContentAsString().substring(10,(result.getResponse().getContentAsString().length()-2));
+
+        String stringJson=("{\n" +
+                "    \"name\" : \"anyad\",\n" +
+                "    \"username\" : \"anyad\",\n" +
+                "    \"password\" : \"anyad\",\n" +
+                "    \"email\" : \"anyad@gmail.com\",\n" +
+                "    \"phone\" : \"+36706763701\",\n" +
+                "    \"imageUrl\" : \"anyad\",\n" +
+                "    \"userCode\" : \" 6969\"\n" +
+                "}");
+
+        mockMvc.perform(
+                post("http://localhost:8080/CookaholicUser/register/guest")
+                        .header(HttpHeaders.AUTHORIZATION, "Bearer " + token)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(stringJson))
+                .andExpect(status().isCreated())
+                .andReturn();
+    }
+
+    @Test
+    @Order(4)
     @Rollback(value = false)
     public void deleteAllUserCheck() throws Exception {
 
@@ -158,6 +193,38 @@ public class UserServiceTests{
 
         String token = result.getResponse().getContentAsString().substring(10,(result.getResponse().getContentAsString().length()-2));
         mockMvc.perform(delete("/CookaholicUser/delete")
+                .header(HttpHeaders.AUTHORIZATION, "Bearer " + token))
+                .andDo(print())
+                .andExpect(status().isOk())
+                .andReturn();
+
+    }
+
+    @Test
+    @Order(5)
+    @Rollback(value = false)
+    public void adminDeleteUser() throws Exception {
+
+        String stringAdmin=("{\n" +
+                "    \"username\" : \"admin\",\n" +
+                "    \"password\" : \"admin\"\n" +
+                "}");
+
+        MvcResult result = this.mockMvc.perform(
+                post("http://localhost:8080/api/auth")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(stringAdmin)).andDo(print()).andExpect(status().isOk())
+                .andReturn();
+
+        String token = result.getResponse().getContentAsString().substring(10,(result.getResponse().getContentAsString().length()-2));
+        mockMvc.perform(delete("/CookaholicUser/delete/{id}",2L)
+                .header(HttpHeaders.AUTHORIZATION, "Bearer " + token))
+                .andDo(print())
+                .andExpect(status().isOk())
+                .andReturn();
+
+        String token2 = result.getResponse().getContentAsString().substring(10,(result.getResponse().getContentAsString().length()-2));
+        mockMvc.perform(delete("/CookaholicUser/delete/{id}",3L)
                 .header(HttpHeaders.AUTHORIZATION, "Bearer " + token))
                 .andDo(print())
                 .andExpect(status().isOk())
