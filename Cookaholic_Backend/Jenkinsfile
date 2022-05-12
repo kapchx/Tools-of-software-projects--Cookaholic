@@ -12,9 +12,7 @@ pipeline {
 
         stage('Build'){
             steps{
-                sh 'cd Cookaholic_Backend'
-                sh 'ls -lha Cookaholic_Backend/'
-                dir('your-sub-directory') {
+                dir('Cookaholic_Backend') {
                     sh "pwd"
                     sh "ls -lha"
                 }
