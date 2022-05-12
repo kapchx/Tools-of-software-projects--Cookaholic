@@ -12,16 +12,15 @@ pipeline {
 
         stage('Build'){
             steps{
-                sh 'mkdir ./Cookaholic_Backend/lib'
-                sh 'cd ./Cookaholic_Backend/lib/ ; /usr/local/bin/wget https://repo1.maven.org/maven2/org/junit/platform/junit-platform-console-standalone/1.7.0/junit-platform-console-standalone-1.7.0-all.jar'
-                sh 'cd Cookaholic_Backend/src/test/java/com/toolsofsoftwareprojects/cookaholic_backend/repo/ ; javac -cp "../lib/junit-platform-console-standalone-1.7.0-all.jar" UserRepoTests.java'
+                sh 'cd ./Cookaholic_Backend'
+                sh 'mvn clean install'
+            
             }
         }
 
         stage('Test'){
             steps{
-                sh 'cd ./Cookaholic_Backend/src/ ; java -jar ./lib/junit-platform-console-standalone-1.7.0-all.jar -cp "." --select-class UserRepoTests --reports-dir="reports"'
-                junit './Cookaholic_Backend/src/reports/*-jupiter.xml'
+                sh 'echo testing'
             }
         }
 
