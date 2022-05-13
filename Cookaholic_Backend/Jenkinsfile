@@ -1,0 +1,37 @@
+pipeline {
+
+    agent any
+    stages {
+
+        stage('Checkout Codebase'){
+            steps{
+                cleanWs()
+                checkout scm
+            }
+        }
+
+        stage('Build'){
+            steps{
+                dir('Cookaholic_Backend') {
+                    sh "pwd"
+                    sh "ls -lha"
+                    sh '/usr/local/bin/mvn clean install'
+                }
+            
+            }
+        }
+
+        stage('Test'){
+            steps{
+                sh 'echo testing'
+            }
+        }
+
+        stage('Deploy'){
+            steps{
+                sh 'echo Deploy' 
+            }
+        }
+    }
+
+}
