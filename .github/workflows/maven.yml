@@ -26,7 +26,7 @@ jobs:
         cache: maven
 
     - name: Step-3 Build the project with Maven
-      run: ls -lha; mvn -B package --file Cookaholic_Backend/pom.xml
+      run: ls -lha; mvn -B install --file Cookaholic_Backend/pom.xml -DskipTests
 
     - name: Step-4 list current dir
       run: ls -lha
